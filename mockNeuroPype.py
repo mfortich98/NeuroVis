@@ -16,8 +16,8 @@ def neuropype_simulator():
 
     try:
         while True:
-            data_array = [random.uniform(0.1, 1) for _ in range(7)]
-            data_bytes = struct.pack('7f', *data_array)
+            data_array = [random.uniform(0.1, 0.4) for _ in range(2)]
+            data_bytes = struct.pack('2f', *data_array)
             connection.sendall(data_bytes)
             # print(f"sent {data_array}")
             time.sleep(1)  # Simulate data sending every 5 seconds

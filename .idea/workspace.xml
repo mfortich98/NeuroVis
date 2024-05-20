@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed674d4e-5889-4ea2-ab66-af36d472e8c8" name="Changes" comment="Particles are drawn, but there are some that are showing up in the same location, and there are issues with how they move.">
+    <list default="true" id="ed674d4e-5889-4ea2-ab66-af36d472e8c8" name="Changes" comment="fixed something">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mockNeuroPype.py" beforeDir="false" afterPath="$PROJECT_DIR$/mockNeuroPype.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/particle.py" beforeDir="false" afterPath="$PROJECT_DIR$/particle.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,18 +36,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mockNeuroPype.executor&quot;: &quot;Run&quot;,
-    &quot;Python.particle.executor&quot;: &quot;Run&quot;,
-    &quot;Python.t.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/d4tic/PycharmProjects/NeuroSynch/main.py&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.main.executor": "Run",
+    "Python.mockNeuroPype.executor": "Run",
+    "Python.particle.executor": "Run",
+    "Python.t.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/d4tic/PycharmProjects/NeuroSynch/main.py"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\d4tic\PycharmProjects\NeuroSynch\" />
@@ -119,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716220745570</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fixed something">
+      <option name="closed" value="true" />
+      <created>1716232976378</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716232976378</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -137,6 +147,7 @@
     <MESSAGE value="First draft, incomplete" />
     <MESSAGE value="FIrst draft, needs troubleshooting. Particles arent drawn." />
     <MESSAGE value="Particles are drawn, but there are some that are showing up in the same location, and there are issues with how they move." />
-    <option name="LAST_COMMIT_MESSAGE" value="Particles are drawn, but there are some that are showing up in the same location, and there are issues with how they move." />
+    <MESSAGE value="fixed something" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed something" />
   </component>
 </project>

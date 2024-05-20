@@ -38,10 +38,11 @@ class VisualizationManager:
         }
 
         # Define the data array
-        self.history = [[0] * 7]
+        self.history = [[0] * 2]
 
-        # Create the particle group
-        self.num_particle_groups = 7
+        # Create the particle variables
+        self.num_particles = 256
+        self.num_synch_values = 2
         self.particle_group = pygame.sprite.Group()
         self._initialize_particles()
 
@@ -70,7 +71,7 @@ class VisualizationManager:
 
     def _update_screen(self):
         self.surface.fill(self.colors["WHITE"])
-        self._draw_circle_sections()
+        self._draw_circle()
         self.draw_particles()
 
         # Scale display to full size
@@ -86,27 +87,24 @@ class VisualizationManager:
         self.clock.tick(self.fps)
 
     def _initialize_particles(self):
-        angle = math.radians(0)
-        Particle(self.center, angle, self.particle_group)
-        # TODO: Uncomment this!
-        # for i in range(self.num_particle_groups):
-        #     angle = math.radians(i * (360 / self.num_particle_groups))
-        #     Particle(self.center, angle, self.particle_group)
+        for i in range(self.num_particles):
+            angle = math.radians(i * (360 / self.num_particles))
+            Particle(self.center, self.radius, angle, self.particle_group)
 
     # Function to draw circle divided into sections like slices of a pie
-    def _draw_circle_sections(self):
-        section_angle = 360 / self.num_particle_groups
+    def _draw_circle(self):
+        # section_angle = 360 / self.num_particles
 
-        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius, 2)
+        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.25, 2)
 
-        for i in range(self.num_particle_groups):
-            end_angle = math.radians(i * section_angle)
-
-            # Draw line from center to arc
-            line_start = (self.center[0], self.center[1])
-            line_end = (int(self.center[0] + self.radius * math.cos(end_angle)),
-                        int(self.center[1] + self.radius * math.sin(end_angle)))
-            pygame.draw.line(self.surface, self.colors["BLACK"], line_start, line_end, 2)
+        # for i in range(self.num_particles):
+        #     end_angle = math.radians(i * section_angle)
+        #
+        #     # Draw line from center to arc
+        #     line_start = (self.center[0], self.center[1])
+        #     line_end = (int(self.center[0] + self.radius * math.cos(end_angle)),
+        #                 int(self.center[1] + self.radius * math.sin(end_angle)))
+        #     pygame.draw.line(self.surface, self.colors["BLACK"], line_start, line_end, 2)
 
     def draw_particles(self):
         self.particle_group.draw(self.surface)
@@ -115,8 +113,13 @@ class VisualizationManager:
         self.particle_group.update()
 
     def set_anchor_positions(self):
+        # half = self.num_particles // self.num_synch_values
+
         for i, particle in enumerate(self.particle_group):
-            particle.set_anchor(self.history[-1][i])
+            if i % 2 == 0:
+                particle.set_anchor(self.history[-1][0])
+            else:
+                particle.set_anchor(self.history[-1][1])
 
     # Function to handle input from NeuroPype
     def handle_neuropype_input(self, data):
@@ -133,9 +136,9 @@ def neuropype_listener():
 
     try:
         while True:
-            data = client_socket.recv(28)  # 7 floats * 4 bytes each = 28 bytes
+            data = client_socket.recv(8)  # 2 floats * 4 bytes each = 28 bytes
             if data:
-                data_array = struct.unpack('7f', data)
+                data_array = struct.unpack('2f', data)
                 # Create a custom event with NeuroPype data
                 event = pygame.event.Event(NEUROPYPE_EVENT, data=data_array)
                 # Post the event to the Pygame event queue
@@ -158,7 +161,7 @@ if __name__ == '__main__':
     vis = VisualizationManager()
 
     # Start the NeuroPype listener in a separate thread
-    listener_thread = threading.Thread(target=neuropype_listener, args=(vis,))
+    listener_thread = threading.Thread(target=neuropype_listener)
     listener_thread.daemon = True  # Daemonize the thread to exit when the main program exits
     listener_thread.start()
 
