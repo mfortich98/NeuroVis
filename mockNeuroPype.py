@@ -16,7 +16,7 @@ def neuropype_simulator():
 
     try:
         while True:
-            data_array = [random.uniform(0.1, 0.4) for _ in range(2)]
+            data_array = [random.uniform(0, 1) for _ in range(2)]
             data_bytes = struct.pack('2f', *data_array)
             connection.sendall(data_bytes)
             # print(f"sent {data_array}")

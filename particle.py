@@ -24,7 +24,7 @@ class Particle(pygame.sprite.Sprite):
         if self.position < self.anchor - self.tether:
             self.speed = self.ms
         # Over Anchor
-        elif self.position > self.angle + self.tether:
+        elif self.position > self.anchor + self.tether:
             self.speed = -self.ms
         #   Past the center
         if self.position > 1:
@@ -42,7 +42,7 @@ class Particle(pygame.sprite.Sprite):
 
     def set_anchor(self, anchor):
         self.anchor = anchor
-        self.speed = -self.ms if self.position > self.anchor else self.ms
+        # self.speed = -self.ms if self.position > self.anchor else self.ms
 
 
 

@@ -115,8 +115,9 @@ class VisualizationManager:
     def set_anchor_positions(self):
         # half = self.num_particles // self.num_synch_values
 
-        for i, particle in enumerate(self.particle_group):
-            if i % 2 == 0:
+        for particle in self.particle_group:
+            random_assign = random.choice((0, 1))
+            if random_assign == 0:
                 particle.set_anchor(self.history[-1][0])
             else:
                 particle.set_anchor(self.history[-1][1])
