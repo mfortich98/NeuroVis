@@ -10,7 +10,8 @@ class Particle(pygame.sprite.Sprite):
         self.radius = radius
         self.origin = self.destination + pygame.math.Vector2(self.radius, 0).rotate_rad(angle)
         self.position = self.origin
-        self.speed = 0.005
+        self.ms = 0.005
+        self.speed = 0
         self.anchor = self.origin
         self.tether = 0.1
         self.image = pygame.image.load('images/particle.png').convert_alpha()
@@ -19,27 +20,27 @@ class Particle(pygame.sprite.Sprite):
     def update(self):
         # If the particle exceeds max distance, it reverses direction
             # Past the center
-            if self.position > 1:
-                pass
+        if self.position > 1:
+            self.speed = -self.ms
             # Outside the outer edge or origin
-            if self.position < 0:
-                pass
+        if self.position < 0:
+            self.speed = self.ms
             # Under Anchor
-            if self.position < self.anchor - self.tether:
-                pass
+        if self.position < self.anchor - self.tether:
+            self.speed = self.ms
             # Over Anchor
-            if self.position > self.angle + self.tether:
-                pass
+        if self.position > self.angle + self.tether:
+            self.speed = -self.ms
 
-        # Update radius (distance from center)
-        self.vector.scale_to_length(self.anchor + self.speed)
+        # Update position relative to travel line
+        self.position += self.speed
 
         # Update the sprite's rect position
-        self.rect.center += self.vector
+        self.rect.center += pygame.math.Vector2(self.position, 0).rotate_rad(self.angle) * self.radius
         print(f'{self.angle}: pos({self.rect.center})')
 
     def set_anchor(self, anchor):
-        self.anchor = pygame.math.Vector2(anchor, 0).rotate_rad(self.angle)
+        self.anchor = anchor
 
 
 
