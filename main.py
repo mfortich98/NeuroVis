@@ -28,7 +28,7 @@ class VisualizationManager:
         pygame.display.set_caption('Neuropype Visualization')
         self.fps = 60
         self.center = (self.display_width // 2, self.display_height // 2)
-        self.radius = min(self.display_width, self.display_height) // 3
+        self.radius = min(self.display_width, self.display_height) // 2.5
 
         # Define the colors
         self.colors = {
@@ -41,7 +41,7 @@ class VisualizationManager:
         self.history = [[0] * 2]
 
         # Create the particle variables
-        self.num_particles = 256
+        self.num_particles = 512
         self.num_synch_values = 2
         self.particle_group = pygame.sprite.Group()
         self._initialize_particles()
@@ -95,7 +95,7 @@ class VisualizationManager:
     def _draw_circle(self):
         # section_angle = 360 / self.num_particles
 
-        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.25, 2)
+        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.15, 2)
 
         # for i in range(self.num_particles):
         #     end_angle = math.radians(i * section_angle)

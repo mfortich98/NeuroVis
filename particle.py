@@ -14,7 +14,7 @@ class Particle(pygame.sprite.Sprite):
         self.ms = 0.005
         self.speed = 0
         self.anchor = 0
-        self.tether = 0.2
+        self.tether = 0.3
         self.image = pygame.image.load('images/particle.png').convert_alpha()
         self.rect = self.image.get_rect(center=center)
 
