@@ -6,24 +6,30 @@ class Particle(pygame.sprite.Sprite):
     def __init__(self, center, radius, angle, *groups):
         super().__init__(*groups)
         self.angle = angle
-        self.center = center
+        self.destination = center
         self.radius = radius
-        self.speed = 0.1
-        self.vector = pygame.math.Vector2(self.speed, 0).rotate_rad(angle)
-        self.anchor = self.radius
-        self.tether = 0.5
+        self.origin = self.destination + pygame.math.Vector2(self.radius, 0).rotate_rad(angle)
+        self.position = self.origin
+        self.speed = 0.005
+        self.anchor = self.origin
+        self.tether = 0.1
         self.image = pygame.image.load('images/particle.png').convert_alpha()
         self.rect = self.image.get_rect(center=center)
 
     def update(self):
         # If the particle exceeds max distance, it reverses direction
-            # In the center
-            if
-            # Outside the border
+            # Past the center
+            if self.position > 1:
+                pass
+            # Outside the outer edge or origin
+            if self.position < 0:
+                pass
             # Under Anchor
+            if self.position < self.anchor - self.tether:
+                pass
             # Over Anchor
-        if self.vector < self.center or self.vector < self.anchor.scale_to_length() < (self.anchor - self.tether):
-            self.vector *= -1
+            if self.position > self.angle + self.tether:
+                pass
 
         # Update radius (distance from center)
         self.vector.scale_to_length(self.anchor + self.speed)
