@@ -10,8 +10,8 @@ class Particle(pygame.sprite.Sprite):
         self.angle = angle
         self.radius = radius
         self.anchor = 0
-        self.speed = 200
-        self.tether = 50
+        self.speed = 10
+        self.tether = 5
 
     def update(self):
         # Update radius (distance from center)
@@ -27,6 +27,7 @@ class Particle(pygame.sprite.Sprite):
 
         # Update the sprite's rect position
         self.rect.center = (x, y)
+        print(f'I am at {self.rect.center}')
 
     def set_anchor(self, anchor):
         self.anchor = anchor

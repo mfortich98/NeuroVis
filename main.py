@@ -9,6 +9,7 @@ import time
 import mockNeuroPype
 from particle import Particle
 
+
 class VisualizationManager:
     def __init__(self):
         # Start up PyGame instance
@@ -40,28 +41,28 @@ class VisualizationManager:
         self.history = [[0] * 7]
 
         # Create the particle group
-        self.num_particles = 7
+        self.num_particle_groups = 7
         self.particle_group = pygame.sprite.Group()
         self._initialize_particles()
 
     def _initialize_particles(self):
-        for i in range(self.num_particles):
-            angle = math.radians((i + 0.5) * (360 / self.num_particles))
+        for i in range(self.num_particle_groups):
+            angle = math.radians((i + 0.5) * (360 / self.num_particle_groups))
             Particle(angle, self.particle_group)
 
     # Function to draw circle divided into sections like slices of a pie
     def _draw_circle_sections(self):
-        num_sections = 7
-        section_angle = 360 / num_sections
+        section_angle = 360 / self.num_particle_groups
 
         pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius, 2)
 
-        for i in range(num_sections):
+        for i in range(self.num_particle_groups):
             end_angle = math.radians((i + 1) * section_angle)
 
             # Draw line from center to arc
             line_start = (self.center[0], self.center[1])
-            line_end = (int(self.center[0] + self.radius * math.cos(end_angle)), int(self.center[1] + self.radius * math.sin(end_angle)))
+            line_end = (int(self.center[0] + self.radius * math.cos(end_angle)),
+                        int(self.center[1] + self.radius * math.sin(end_angle)))
             pygame.draw.line(self.surface, self.colors["BLACK"], line_start, line_end, 2)
 
     def update_particles(self):
@@ -72,8 +73,7 @@ class VisualizationManager:
 
     def set_anchor_positions(self):
         for i, particle in enumerate(self.particle_group):
-            if i < len(positions):
-                particle.set_anchor(positions[i] * 50)
+            particle.set_anchor(self.history[-1][i])
 
     # Function to draw dot within a section
     def _draw_data_dot(self, pos, section):
@@ -113,8 +113,7 @@ class VisualizationManager:
             self._update_screen()
 
     def _resolve_actions(self):
-        # Receive new data from NeuroPype
-        pass
+        self.update_particles()
 
     def _check_events(self):
         for e in pygame.event.get():
@@ -123,11 +122,12 @@ class VisualizationManager:
                 sys.exit()
             elif e.type == NEUROPYPE_EVENT:
                 self.history.append(e.data)
+                self.set_anchor_positions()
 
     def _update_screen(self):
         self.surface.fill(self.colors["WHITE"])
         self._draw_circle_sections()
-        self._draw_all_data_dots()
+        self.draw_particles()
 
         # Scale display to full size
         scaled_surface = pygame.transform.scale(self.surface, (self.display_width, self.display_height))
