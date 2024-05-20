@@ -3,34 +3,38 @@ import pygame
 
 
 class Particle(pygame.sprite.Sprite):
-    def __init__(self, angle, radius, *groups):
+    def __init__(self, center, radius, angle, *groups):
         super().__init__(*groups)
-        self.image = pygame.image.load('images/particle.png').convert_alpha()
-        self.rect = self.image.get_rect(center=(0, 0))
         self.angle = angle
+        self.center = center
         self.radius = radius
-        self.anchor = 0
-        self.speed = 10
-        self.tether = 5
+        self.speed = 0.1
+        self.vector = pygame.math.Vector2(self.speed, 0).rotate_rad(angle)
+        self.anchor = self.radius
+        self.tether = 0.5
+        self.image = pygame.image.load('images/particle.png').convert_alpha()
+        self.rect = self.image.get_rect(center=center)
 
     def update(self):
-        # Update radius (distance from center)
-        self.radius += self.speed
-
         # If the particle exceeds max distance, it reverses direction
-        if self.radius > self.tether + self.anchor or self.radius < 0 or self.radius < self.tether - self.anchor:
-            self.speed = -self.speed
+            # In the center
+            if
+            # Outside the border
+            # Under Anchor
+            # Over Anchor
+        if self.vector < self.center or self.vector < self.anchor.scale_to_length() < (self.anchor - self.tether):
+            self.vector *= -1
 
-        # Calculate the new position based on polar coordinates
-        x = self.rect.center.x + self.radius * math.cos(self.angle)
-        y = self.rect.center.y + self.radius * math.sin(self.angle)
+        # Update radius (distance from center)
+        self.vector.scale_to_length(self.anchor + self.speed)
 
         # Update the sprite's rect position
-        self.rect.center = (x, y)
-        print(f'I am at {self.rect.center}')
+        self.rect.center += self.vector
+        print(f'{self.angle}: pos({self.rect.center})')
 
     def set_anchor(self, anchor):
-        self.anchor = anchor
+        self.anchor = pygame.math.Vector2(anchor, 0).rotate_rad(self.angle)
+
 
 
 
