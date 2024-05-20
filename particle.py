@@ -42,7 +42,7 @@ class Particle(pygame.sprite.Sprite):
 
     def set_anchor(self, anchor):
         self.anchor = anchor
-        # self.speed = -self.ms if self.position > self.anchor else self.ms
+        self.speed = -self.ms if self.position > self.anchor else self.ms
 
 
 

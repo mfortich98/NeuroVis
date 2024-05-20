@@ -41,7 +41,7 @@ class VisualizationManager:
         self.history = [[0] * 2]
 
         # Create the particle variables
-        self.num_particles = 512
+        self.num_particles = 1024
         self.num_synch_values = 2
         self.particle_group = pygame.sprite.Group()
         self._initialize_particles()
