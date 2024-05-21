@@ -1,6 +1,5 @@
 import math
 import random
-
 import pygame
 
 
@@ -15,7 +14,7 @@ class Particle(pygame.sprite.Sprite):
         self.speed = 0
         self.anchor = 0
         self.tether = 0.3
-        self.image = pygame.image.load('images/particle.png').convert_alpha()
+        self.image = pygame.image.load('images/particle1.png').convert_alpha()
         self.rect = self.image.get_rect(center=center)
 
     def update(self):
@@ -37,7 +36,9 @@ class Particle(pygame.sprite.Sprite):
         self.position += self.speed
 
         # Update the sprite's rect position
-        self.rect.center = self.center + pygame.math.Vector2(1.1 - self.position, 0).rotate_rad(self.angle) * self.radius
+        self.rect.center = (self.center
+                            + pygame.math.Vector2(1.1 - self.position, 0).rotate_rad(self.angle)
+                            * self.radius)
         # print(f'Rad({self.angle}): pos({self.position}), anchor:({self.anchor})')
 
     def set_anchor(self, anchor):

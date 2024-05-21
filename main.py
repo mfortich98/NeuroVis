@@ -34,7 +34,8 @@ class VisualizationManager:
         self.colors = {
             "WHITE": (255, 255, 255),
             "BLACK": (0, 0, 0),
-            "RED": (255, 0, 0)
+            "RED": (255, 0, 0),
+            "GREEN": (0, 255, 0)
         }
 
         # Define the data array
@@ -96,6 +97,7 @@ class VisualizationManager:
         # section_angle = 360 / self.num_particles
 
         pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.15, 2)
+
 
         # for i in range(self.num_particles):
         #     end_angle = math.radians(i * section_angle)
