@@ -12,8 +12,6 @@ def neuropype_simulator():
     connection, client_address = server_socket.accept()
     print(f"NeuroPype Simulator: Connected to {client_address}")
 
-    generate_mock_data()
-
     try:
         while True:
             data_array = [random.uniform(0, 1) for _ in range(2)]
@@ -24,11 +22,3 @@ def neuropype_simulator():
     finally:
         connection.close()
 
-
-def generate_mock_data():
-    # Generate sample data array
-    created_array = []
-    for _ in range(20):
-        data_point = [random.uniform(0.2, 1) for _ in range(7)]
-        created_array.append(data_point)
-    return created_array
