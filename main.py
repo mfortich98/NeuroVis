@@ -29,6 +29,7 @@ class VisualizationManager:
         self.fps = 60
         self.center = (self.display_width // 2, self.display_height // 2)
         self.radius = min(self.display_width, self.display_height) // 2.5
+        self.label = Label(self.display)
 
         # Define the colors
         self.colors = {
@@ -42,7 +43,7 @@ class VisualizationManager:
         self.history = [[0] * 2]
 
         # Create the particle variables
-        self.num_particles = 1024
+        self.num_particles = 6000
         self.num_synch_values = 2
         self.particle_group = pygame.sprite.Group()
         self._initialize_particles()
@@ -60,6 +61,7 @@ class VisualizationManager:
 
     def _resolve_actions(self):
         self.update_particles()
+        self.update_labels()
 
     def _check_events(self):
         for e in pygame.event.get():
@@ -74,18 +76,28 @@ class VisualizationManager:
         self.surface.fill(self.colors["WHITE"])
         self._draw_circle()
         self.draw_particles()
+        self.label.draw()
+        synch_value_0 = self.history[-1][0]
+        synch_value_1 = self.history[-1][1]
+        pygame.display.set_caption(f'Neuropype Visualization - ({synch_value_0:.2f}, {synch_value_1:.2f})')
 
         # Scale display to full size
-        scaled_surface = pygame.transform.scale(self.surface, (self.display_width, self.display_height))
+        # scaled_surface = pygame.transform.scale(self.surface, (self.display_width, self.display_height))
 
         # Blit to screen surface
-        self.display.blit(scaled_surface, (0, 0))
+        self.display.blit(self.surface, (0, 0))
 
         # Update the surface
         pygame.display.flip()
 
         # Update clock by fps
         self.clock.tick(self.fps)
+
+    def update_particles(self):
+        self.particle_group.update()
+
+    def update_labels(self):
+        self.label.update(self.history[-1])
 
     def _initialize_particles(self):
         for i in range(self.num_particles):
@@ -98,7 +110,6 @@ class VisualizationManager:
 
         pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.15, 2)
 
-
         # for i in range(self.num_particles):
         #     end_angle = math.radians(i * section_angle)
         #
@@ -110,9 +121,6 @@ class VisualizationManager:
 
     def draw_particles(self):
         self.particle_group.draw(self.surface)
-
-    def update_particles(self):
-        self.particle_group.update()
 
     def set_anchor_positions(self):
         # half = self.num_particles // self.num_synch_values
@@ -129,6 +137,31 @@ class VisualizationManager:
         # Save history of inputs received
         self.history.append(data)
         self.set_anchor_positions()
+
+
+class Label:
+    def __init__(self, display):
+        self.text = ""
+        self.text_color = (255, 255, 255)
+        self.font = pygame.freetype.SysFont('Sans', 16)
+        self.display = display
+
+    def update(self, data):
+        self.text = "Synch value 0: " + str(data[0]) + \
+                    "\nSynch value 1: " + str(data[1])
+
+    def draw(self):
+        lines = self.text.split("\n")
+        line_loc = 14
+        surface = pygame.surface.Surface((100, 100))
+        for line in lines:
+            text_rect = self.font.get_rect(line)
+            text_rect.left = 11
+            text_rect.top = line_loc
+            line_loc += self.font.size
+            self.font.render_to(surface, text_rect.topleft, line, self.text_color)
+
+        self.display.blit(surface, (400, 400))
 
 
 # Function to listen for data from NeuroPype
