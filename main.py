@@ -7,11 +7,13 @@ import pygame
 import sys
 import time
 import mockNeuroPype
+from label import Label
 from particle import Particle
+from settings import settings
 
 
 class VisualizationManager:
-    def __init__(self):
+    def __init__(self, chosen_settings):
         # Start up PyGame instance
         pygame.init()
 
@@ -21,7 +23,7 @@ class VisualizationManager:
         self.dt = 0
 
         # Create display-related attributes
-        self.display_width = 800
+        self.display_width = chosen_settings.display_size
         self.display_height = 800
         self.display = pygame.display.set_mode((self.display_width, self.display_height), flags=pygame.SCALED, vsync=1)
         self.surface = pygame.Surface((self.display_width, self.display_height))
@@ -43,7 +45,9 @@ class VisualizationManager:
         self.history = [[0] * 2]
 
         # Create the particle variables
-        self.num_particles = 6000
+        self.num_particles = chosen_settings.num_particles
+        self.particle_ms = chosen_settings.particle_speed
+        self.particle_tether_range = chosen_settings.particle_tether_range
         self.num_synch_values = 2
         self.particle_group = pygame.sprite.Group()
         self._initialize_particles()
@@ -76,7 +80,8 @@ class VisualizationManager:
         self.surface.fill(self.colors["WHITE"])
         self._draw_circle()
         self.draw_particles()
-        self.label.draw()
+        if settings.label_on:
+            self.label.draw()
 
         # Scale display to full size
         # scaled_surface = pygame.transform.scale(self.surface, (self.display_width, self.display_height))
@@ -99,13 +104,13 @@ class VisualizationManager:
     def _initialize_particles(self):
         for i in range(self.num_particles):
             angle = math.radians(i * (360 / self.num_particles))
-            Particle(self.center, self.radius, angle, self.particle_group)
+            Particle(self.particle_ms, self.particle_tether_range, self.center, self.radius, angle, self.particle_group)
 
     # Function to draw circle divided into sections like slices of a pie
     def _draw_circle(self):
         # section_angle = 360 / self.num_particles
 
-        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.15, 2)
+        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.02, 2)
 
         # for i in range(self.num_particles):
         #     end_angle = math.radians(i * section_angle)
@@ -136,30 +141,6 @@ class VisualizationManager:
         self.set_anchor_positions()
 
 
-class Label:
-    def __init__(self, surface):
-        self.text = ""
-        self.text_color = (255, 255, 255)
-        self.font = pygame.freetype.SysFont('Sans', 16)
-        self.surface = surface
-
-    def update(self, data):
-        self.text = f"Synch value 1: {data[0]:.2f}\nSynch value 2: {data[1]:.2f}"
-
-    def draw(self):
-        lines = self.text.split("\n")
-        line_loc = 14
-        surface = pygame.image.load('images/label.png').convert_alpha()
-        for line in lines:
-            text_rect = self.font.get_rect(line)
-            text_rect.left = 11
-            text_rect.top = line_loc
-            line_loc += self.font.size
-            self.font.render_to(surface, text_rect.topleft, line, self.text_color)
-
-        self.surface.blit(surface, (0, 0))
-
-
 # Function to listen for data from NeuroPype
 def neuropype_listener():
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -185,12 +166,12 @@ if __name__ == '__main__':
     NEUROPYPE_EVENT = pygame.USEREVENT + 1
 
     # Initialize Fake NeuroPype
-    neuro_thread = threading.Thread(target=mockNeuroPype.neuropype_simulator)
+    neuro_thread = threading.Thread(target=mockNeuroPype.neuropype_simulator, args=(settings.mock_update_rate, settings.mock_value_range))
     neuro_thread.daemon = True
     neuro_thread.start()
 
     # Initialize Visualization Manager
-    vis = VisualizationManager()
+    vis = VisualizationManager(settings)
 
     # Start the NeuroPype listener in a separate thread
     listener_thread = threading.Thread(target=neuropype_listener)

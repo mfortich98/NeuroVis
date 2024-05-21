@@ -4,16 +4,16 @@ import pygame
 
 
 class Particle(pygame.sprite.Sprite):
-    def __init__(self, center, radius, angle, *groups):
+    def __init__(self, ms, tether, center, radius, angle, *groups):
         super().__init__(*groups)
         self.angle = angle
         self.center = center
         self.radius = radius
         self.position = random.uniform(0.2, 0.4)
-        self.ms = 0.005
+        self.ms = ms
         self.speed = 0
         self.anchor = 0
-        self.tether = 0.05
+        self.tether = tether
         self.image = pygame.image.load('images/particle1.png').convert_alpha()
         self.rect = self.image.get_rect(center=center)
 
@@ -37,7 +37,7 @@ class Particle(pygame.sprite.Sprite):
 
         # Update the sprite's rect position
         self.rect.center = (self.center
-                            + pygame.math.Vector2(1.1 - self.position, 0).rotate_rad(self.angle)
+                            + pygame.math.Vector2(1 - self.position, 0).rotate_rad(self.angle)
                             * self.radius)
         # print(f'Rad({self.angle}): pos({self.position}), anchor:({self.anchor})')
 
