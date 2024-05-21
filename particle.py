@@ -37,7 +37,7 @@ class Particle(pygame.sprite.Sprite):
 
         # Update the sprite's rect position
         self.rect.center = (self.center
-                            + pygame.math.Vector2(1 - self.position, 0).rotate_rad(self.angle)
+                            + pygame.math.Vector2(1.05 - self.position, 0).rotate_rad(self.angle)
                             * self.radius)
         # print(f'Rad({self.angle}): pos({self.position}), anchor:({self.anchor})')
 
