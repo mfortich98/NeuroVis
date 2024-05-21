@@ -9,7 +9,8 @@ class Label:
         self.surface = surface
 
     def update(self, data):
-        self.text = f"Synch value 1: {data[0]:.2f}\nSynch value 2: {data[1]:.2f}"
+        self.text = (f"Synch value 1: {data[0]:.2f}"
+                     f"\nSynch value 2: {data[1]:.2f}")
 
     def draw(self):
         lines = self.text.split("\n")

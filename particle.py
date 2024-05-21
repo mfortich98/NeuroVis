@@ -19,8 +19,11 @@ class Particle(pygame.sprite.Sprite):
 
     def update(self):
         # If the particle is...
+        if self.tether == 0:
+            if self.anchor + 0.01 > self.position > self.anchor - 0.01:
+                self.speed = 0
         # Under Anchor
-        if self.position < self.anchor - self.tether:
+        elif self.position < self.anchor - self.tether:
             self.speed = self.ms
         # Over Anchor
         elif self.position > self.anchor + self.tether:
@@ -31,6 +34,8 @@ class Particle(pygame.sprite.Sprite):
             # Outside the outer edge or origin
         elif self.position < 0:
             self.speed = self.ms
+
+
 
         # Update position relative to travel line
         self.position += self.speed

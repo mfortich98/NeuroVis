@@ -48,6 +48,7 @@ class VisualizationManager:
         self.num_particles = chosen_settings.num_particles
         self.particle_ms = chosen_settings.particle_speed
         self.particle_tether_range = chosen_settings.particle_tether_range
+        self.anchor_assignment = chosen_settings.anchor_assignment
         self.num_synch_values = 2
         self.particle_group = pygame.sprite.Group()
         self._initialize_particles()
@@ -110,7 +111,7 @@ class VisualizationManager:
     def _draw_circle(self):
         # section_angle = 360 / self.num_particles
 
-        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.02, 2)
+        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.06, 2)
 
         # for i in range(self.num_particles):
         #     end_angle = math.radians(i * section_angle)
@@ -125,14 +126,29 @@ class VisualizationManager:
         self.particle_group.draw(self.surface)
 
     def set_anchor_positions(self):
-        # half = self.num_particles // self.num_synch_values
+        if self.anchor_assignment == "random":
+            for particle in self.particle_group:
+                random_assign = random.choice((0, 1))
+                if random_assign == 0:
+                    particle.set_anchor(self.history[-1][0])
+                else:
+                    particle.set_anchor(self.history[-1][1])
 
-        for particle in self.particle_group:
-            random_assign = random.choice((0, 1))
-            if random_assign == 0:
-                particle.set_anchor(self.history[-1][0])
-            else:
-                particle.set_anchor(self.history[-1][1])
+        elif self.anchor_assignment == "halves":
+            half = self.num_particles // self.num_synch_values
+            for i, particle in enumerate(self.particle_group):
+                if i < half:
+                    particle.set_anchor(self.history[-1][0])
+                else:
+                    particle.set_anchor(self.history[-1][1])
+
+        elif self.anchor_assignment == "even_odd":
+            for i, particle in enumerate(self.particle_group):
+                if i % 2 == 0:
+                    particle.set_anchor(self.history[-1][0])
+                else:
+                    particle.set_anchor(self.history[-1][1])
+
 
     # Function to handle input from NeuroPype
     def handle_neuropype_input(self, data):

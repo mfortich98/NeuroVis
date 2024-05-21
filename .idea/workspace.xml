@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed674d4e-5889-4ea2-ab66-af36d472e8c8" name="Changes" comment="Added labels">
-      <change afterPath="$PROJECT_DIR$/label.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+    <list default="true" id="ed674d4e-5889-4ea2-ab66-af36d472e8c8" name="Changes" comment="Added settings document for easy modification of main variables.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/label.py" beforeDir="false" afterPath="$PROJECT_DIR$/label.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mockNeuroPype.py" beforeDir="false" afterPath="$PROJECT_DIR$/mockNeuroPype.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/particle.py" beforeDir="false" afterPath="$PROJECT_DIR$/particle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +194,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716306844350</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added settings document for easy modification of main variables.">
+      <option name="closed" value="true" />
+      <created>1716309653542</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1716309653542</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added settings document for easy modification of main variables.">
+      <option name="closed" value="true" />
+      <created>1716310134576</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716310134576</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -221,6 +236,7 @@
     <MESSAGE value="Removed unused methods from mockNeuroPype.py" />
     <MESSAGE value="More updates" />
     <MESSAGE value="Added labels" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added labels" />
+    <MESSAGE value="Added settings document for easy modification of main variables." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added settings document for easy modification of main variables." />
   </component>
 </project>
