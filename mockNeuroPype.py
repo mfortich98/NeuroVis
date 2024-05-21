@@ -18,7 +18,7 @@ def neuropype_simulator():
             data_bytes = struct.pack('2f', *data_array)
             connection.sendall(data_bytes)
             # print(f"sent {data_array}")
-            time.sleep(1)  # Simulate data sending every 5 seconds
+            time.sleep(5)  # Simulate data sending every 5 seconds
     finally:
         connection.close()
 

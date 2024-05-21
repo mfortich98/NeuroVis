@@ -29,7 +29,7 @@ class VisualizationManager:
         self.fps = 60
         self.center = (self.display_width // 2, self.display_height // 2)
         self.radius = min(self.display_width, self.display_height) // 2.5
-        self.label = Label(self.display)
+        self.label = Label(self.surface)
 
         # Define the colors
         self.colors = {
@@ -77,9 +77,6 @@ class VisualizationManager:
         self._draw_circle()
         self.draw_particles()
         self.label.draw()
-        synch_value_0 = self.history[-1][0]
-        synch_value_1 = self.history[-1][1]
-        pygame.display.set_caption(f'Neuropype Visualization - ({synch_value_0:.2f}, {synch_value_1:.2f})')
 
         # Scale display to full size
         # scaled_surface = pygame.transform.scale(self.surface, (self.display_width, self.display_height))
@@ -140,20 +137,19 @@ class VisualizationManager:
 
 
 class Label:
-    def __init__(self, display):
+    def __init__(self, surface):
         self.text = ""
         self.text_color = (255, 255, 255)
         self.font = pygame.freetype.SysFont('Sans', 16)
-        self.display = display
+        self.surface = surface
 
     def update(self, data):
-        self.text = "Synch value 0: " + str(data[0]) + \
-                    "\nSynch value 1: " + str(data[1])
+        self.text = f"Synch value 1: {data[0]:.2f}\nSynch value 2: {data[1]:.2f}"
 
     def draw(self):
         lines = self.text.split("\n")
         line_loc = 14
-        surface = pygame.surface.Surface((100, 100))
+        surface = pygame.image.load('images/label.png').convert_alpha()
         for line in lines:
             text_rect = self.font.get_rect(line)
             text_rect.left = 11
@@ -161,7 +157,7 @@ class Label:
             line_loc += self.font.size
             self.font.render_to(surface, text_rect.topleft, line, self.text_color)
 
-        self.display.blit(surface, (400, 400))
+        self.surface.blit(surface, (0, 0))
 
 
 # Function to listen for data from NeuroPype
