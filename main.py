@@ -1,12 +1,13 @@
 import math
 import random
-import socket
-import struct
+#import socket
+#import struct
 import threading
 import pygame
 import sys
 import time
-import mockNeuroPype
+#import mockNeuroPype
+from pylsl import StreamInlet, resolve_byprop
 from label import Label
 from particle import Particle
 from settings import settings
@@ -27,7 +28,7 @@ class VisualizationManager:
         self.display_height = 800
         self.display = pygame.display.set_mode((self.display_width, self.display_height), flags=pygame.SCALED, vsync=1)
         self.surface = pygame.Surface((self.display_width, self.display_height))
-        pygame.display.set_caption('Neuropype Visualization')
+        pygame.display.set_caption('IBS Program')
         self.fps = 60
         self.center = (self.display_width // 2, self.display_height // 2)
         self.radius = min(self.display_width, self.display_height) // 2.5
@@ -112,6 +113,8 @@ class VisualizationManager:
         # section_angle = 360 / self.num_particles
 
         pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.06, 2)
+        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 0.36, 1)
+        pygame.draw.circle(self.surface, self.colors["GREEN"], self.center, self.radius * 0.16, 100)
 
         # for i in range(self.num_particles):
         #     end_angle = math.radians(i * section_angle)
@@ -149,7 +152,6 @@ class VisualizationManager:
                 else:
                     particle.set_anchor(self.history[-1][1])
 
-
     # Function to handle input from NeuroPype
     def handle_neuropype_input(self, data):
         # Save history of inputs received
@@ -159,21 +161,13 @@ class VisualizationManager:
 
 # Function to listen for data from NeuroPype
 def neuropype_listener():
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect(('localhost', 12345))
-    print("Connected to NeuroPype")
-
-    try:
-        while True:
-            data = client_socket.recv(8)  # 2 floats * 4 bytes each = 28 bytes
-            if data:
-                data_array = struct.unpack('2f', data)
-                # Create a custom event with NeuroPype data
-                event = pygame.event.Event(NEUROPYPE_EVENT, data=data_array)
-                # Post the event to the Pygame event queue
-                pygame.event.post(event)
-    finally:
-        client_socket.close()
+    while True:
+        (MFG_coh, timestamp) = MFGinlet.pull_sample()
+        (IFG_coh, timestamp) = IFGinlet.pull_sample()
+        data_array = [MFG_coh[0], IFG_coh[0]]
+        print(MFG_coh[0], IFG_coh[0])
+        event = pygame.event.Event(NEUROPYPE_EVENT, data=data_array)
+        pygame.event.post(event)
 
 
 # Run Visualization
@@ -181,10 +175,13 @@ if __name__ == '__main__':
     # Define a custom event type
     NEUROPYPE_EVENT = pygame.USEREVENT + 1
 
-    # Initialize Fake NeuroPype
-    neuro_thread = threading.Thread(target=mockNeuroPype.neuropype_simulator, args=(settings.mock_update_rate, settings.mock_value_range))
-    neuro_thread.daemon = True
-    neuro_thread.start()
+    # first resolve a stream on the lab network
+    print("Looking for streams...")
+    streams = resolve_byprop('type', 'coherence', minimum=2)
+
+    # create a new inlet to read from the stream
+    MFGinlet = StreamInlet(streams[0])
+    IFGinlet = StreamInlet(streams[1])
 
     # Initialize Visualization Manager
     vis = VisualizationManager(settings)

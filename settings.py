@@ -14,7 +14,7 @@ settings_dict = {
 
     # Particle movement speed
     #   (position updates at 60fps, so keep to small numbers)
-    'particle_speed': 0.006,
+    'particle_speed': 0.008,
 
     # How far from anchor value particles can move
     #   (multiplied by radius)
@@ -24,17 +24,17 @@ settings_dict = {
     # How close to the center particles get at max synch
     #   1 means they hit the center at max synch,
     #   1.5 would mean that max synch would be at half the circle
-    'particle_distance_from_center': 1.05,
+    'particle_distance_from_center': 1,
 
     # Defines if label with synch values is shown
     'label_on': True,
 
     # How often values are sent from the data mocking thread
     #   Measured in seconds
-    'mock_update_rate': 2,
+    'mock_update_rate': 0.5,
 
     # What range of values are mocked and sent to the visualization
-    'mock_value_range': [0, 1]
+    'mock_value_range': [0.4, 0.9]
 }
 
 
