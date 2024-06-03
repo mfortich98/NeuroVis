@@ -7,11 +7,17 @@ import pygame
 import sys
 import time
 #import mockNeuroPype
+import os
 from pylsl import StreamInlet, resolve_byprop
 from label import Label
 from particle import Particle
 from settings import settings
 
+pygame.init()
+
+os.environ['IBS Program'] = '1'
+info = pygame.display.Info()
+width, height = info.current_w, info.current_h
 
 class VisualizationManager:
     def __init__(self, chosen_settings):
@@ -24,8 +30,8 @@ class VisualizationManager:
         self.dt = 0
 
         # Create display-related attributes
-        self.display_width = chosen_settings.display_size
-        self.display_height = 800
+        self.display_width = width  #chosen_settings.display_size
+        self.display_height = height
         self.display = pygame.display.set_mode((self.display_width, self.display_height), flags=pygame.SCALED, vsync=1)
         self.surface = pygame.Surface((self.display_width, self.display_height))
         pygame.display.set_caption('IBS Program')

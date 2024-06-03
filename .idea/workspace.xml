@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed674d4e-5889-4ea2-ab66-af36d472e8c8" name="Changes" comment="Added settings document for easy modification of main variables.">
-      <change beforePath="$PROJECT_DIR$/.idea/NeuroSynch.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NeuroSynch.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ed674d4e-5889-4ea2-ab66-af36d472e8c8" name="Changes" comment="ITS IS CONNNECT NEUROPYEP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/label.py" beforeDir="false" afterPath="$PROJECT_DIR$/label.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mfortich98&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Painkills/NeuroVis.git&quot;,
+    &quot;accountId&quot;: &quot;cbdb52e5-c1bc-48e9-9e79-a5880eaeec7b&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -42,6 +52,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.label.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.mockNeuroPype.executor&quot;: &quot;Run&quot;,
     &quot;Python.particle.executor&quot;: &quot;Run&quot;,
@@ -191,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716310134576</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="ITS IS CONNNECT NEUROPYEP">
+      <option name="closed" value="true" />
+      <created>1716467227634</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716467227634</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,6 +237,7 @@
     <MESSAGE value="More updates" />
     <MESSAGE value="Added labels" />
     <MESSAGE value="Added settings document for easy modification of main variables." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added settings document for easy modification of main variables." />
+    <MESSAGE value="ITS IS CONNNECT NEUROPYEP" />
+    <option name="LAST_COMMIT_MESSAGE" value="ITS IS CONNNECT NEUROPYEP" />
   </component>
 </project>
