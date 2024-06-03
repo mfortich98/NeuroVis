@@ -19,6 +19,7 @@ os.environ['IBS Program'] = '1'
 info = pygame.display.Info()
 width, height = info.current_w, info.current_h
 
+
 class VisualizationManager:
     def __init__(self, chosen_settings):
         # Start up PyGame instance
@@ -171,7 +172,7 @@ def neuropype_listener():
         (MFG_coh, timestamp) = MFGinlet.pull_sample()
         (IFG_coh, timestamp) = IFGinlet.pull_sample()
         data_array = [MFG_coh[0], IFG_coh[0]]
-        print(MFG_coh[0], IFG_coh[0])
+        #print(MFG_coh[0], IFG_coh[0])
         event = pygame.event.Event(NEUROPYPE_EVENT, data=data_array)
         pygame.event.post(event)
 
