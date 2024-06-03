@@ -14,7 +14,7 @@ settings_dict = {
 
     # Particle movement speed
     #   (position updates at 60fps, so keep to small numbers)
-    'particle_speed': 0.008,
+    'particle_speed': 0.001,
 
     # How far from anchor value particles can move
     #   (multiplied by radius)

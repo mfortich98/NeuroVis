@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed674d4e-5889-4ea2-ab66-af36d472e8c8" name="Changes" comment="ITS IS CONNNECT NEUROPYEP">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/label.py" beforeDir="false" afterPath="$PROJECT_DIR$/label.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="ed674d4e-5889-4ea2-ab66-af36d472e8c8" name="Changes" comment="Now with Fullscreen!">
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716467227634</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Now with Fullscreen!">
+      <option name="closed" value="true" />
+      <created>1717401481846</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1717401481846</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -238,6 +244,7 @@
     <MESSAGE value="Added labels" />
     <MESSAGE value="Added settings document for easy modification of main variables." />
     <MESSAGE value="ITS IS CONNNECT NEUROPYEP" />
-    <option name="LAST_COMMIT_MESSAGE" value="ITS IS CONNNECT NEUROPYEP" />
+    <MESSAGE value="Now with Fullscreen!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now with Fullscreen!" />
   </component>
 </project>
