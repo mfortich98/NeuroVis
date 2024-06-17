@@ -9,8 +9,8 @@ class Label:
         self.surface = surface
 
     def update(self, data):
-        self.text = (f"IFG Synch: {data[0]:.3f}"
-                     f"\nMFG Synch: {data[1]:.3f}")
+        self.text = (f"MFG Synch: {data[0]:.3f}"
+                     f"\nIFG Synch: {data[1]:.3f}")
 
     def draw(self):
         lines = self.text.split("\n")
