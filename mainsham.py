@@ -1,12 +1,12 @@
 import math
 import random
-#import socket
-#import struct
+import socket
+import struct
 import threading
 import pygame
 import sys
 import time
-#import mockNeuroPype
+import mockNeuroPype
 import os
 from pylsl import StreamInlet, resolve_byprop
 from label import Label
@@ -168,13 +168,21 @@ class VisualizationManager:
 
 # Function to listen for data from NeuroPype
 def neuropype_listener():
-    while True:
-        (MFG_coh, timestamp) = MFGinlet.pull_sample()
-        (IFG_coh, timestamp) = IFGinlet.pull_sample()
-        data_array = [MFG_coh[0], IFG_coh[0]]
-        #print(MFG_coh[0], IFG_coh[0])
-        event = pygame.event.Event(NEUROPYPE_EVENT, data=data_array)
-        pygame.event.post(event)
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.connect(('localhost', 12345))
+    print("Connected to NeuroPype")
+
+    try:
+        while True:
+            data = client_socket.recv(8)  # 2 floats * 4 bytes each = 28 bytes
+            if data:
+                data_array = struct.unpack('2f', data)
+                # Create a custom event with NeuroPype data
+                event = pygame.event.Event(NEUROPYPE_EVENT, data=data_array)
+                # Post the event to the Pygame event queue
+                pygame.event.post(event)
+    finally:
+        client_socket.close()
 
 
 # Run Visualization
@@ -182,13 +190,10 @@ if __name__ == '__main__':
     # Define a custom event type
     NEUROPYPE_EVENT = pygame.USEREVENT + 1
 
-    # first resolve a stream on the lab network
-    print("Looking for streams...")
-    streams = resolve_byprop('type', 'coherence', minimum=2)
-
-    # create a new inlet to read from the stream
-    MFGinlet = StreamInlet(streams[0])
-    IFGinlet = StreamInlet(streams[1])
+    # Initialize Fake NeuroPype
+    neuro_thread = threading.Thread(target=mockNeuroPype.neuropype_simulator, args=(settings.mock_update_rate, settings.mock_value_range))
+    neuro_thread.daemon = True
+    neuro_thread.start()
 
     # Initialize Visualization Manager
     vis = VisualizationManager(settings)

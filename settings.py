@@ -14,7 +14,7 @@ settings_dict = {
 
     # Particle movement speed
     #   (position updates at 60fps, so keep to small numbers)
-    'particle_speed': 0.001,
+    'particle_speed': 0.0015,
 
     # How far from anchor value particles can move
     #   (multiplied by radius)
@@ -31,10 +31,10 @@ settings_dict = {
 
     # How often values are sent from the data mocking thread
     #   Measured in seconds
-    'mock_update_rate': 0.5,
+    'mock_update_rate': 0.2,
 
     # What range of values are mocked and sent to the visualization
-    'mock_value_range': [0.4, 0.9]
+    'mock_value_range': [1.0, 1.0]
 }
 
 
