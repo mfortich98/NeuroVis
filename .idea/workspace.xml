@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed674d4e-5889-4ea2-ab66-af36d472e8c8" name="Changes" comment="Now with Fullscreen!">
-      <change afterPath="$PROJECT_DIR$/mainsham.py" afterDir="false" />
+    <list default="true" id="ed674d4e-5889-4ea2-ab66-af36d472e8c8" name="Changes" comment="Re-instated the neuropype simulator so it can serve as a negative control.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainsham.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainsham.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,24 +51,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Blank.executor": "Run",
-    "Python.label.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.mainsham.executor": "Run",
-    "Python.mockNeuroPype.executor": "Run",
-    "Python.particle.executor": "Run",
-    "Python.settings.executor": "Run",
-    "Python.t.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/mfort/Desktop/Neural Engineering - CAR/Interbrain Synchronization/Codigo/NeuroVis",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Blank.executor&quot;: &quot;Run&quot;,
+    &quot;Python.label.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mainsham.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mockNeuroPype.executor&quot;: &quot;Run&quot;,
+    &quot;Python.particle.executor&quot;: &quot;Run&quot;,
+    &quot;Python.settings.executor&quot;: &quot;Run&quot;,
+    &quot;Python.t.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mfort/Desktop/Neural Engineering - CAR/Interbrain Synchronization/Codigo/NeuroVis&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mfort\Desktop\Neural Engineering - CAR\Interbrain Synchronization\Codigo\NeuroVis" />
@@ -246,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718620243046</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Re-instated the neuropype simulator so it can serve as a negative control.">
+      <option name="closed" value="true" />
+      <created>1718709761466</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1718709761466</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -275,6 +283,7 @@
     <MESSAGE value="Added settings document for easy modification of main variables." />
     <MESSAGE value="ITS IS CONNNECT NEUROPYEP" />
     <MESSAGE value="Now with Fullscreen!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now with Fullscreen!" />
+    <MESSAGE value="Re-instated the neuropype simulator so it can serve as a negative control." />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-instated the neuropype simulator so it can serve as a negative control." />
   </component>
 </project>

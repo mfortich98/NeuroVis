@@ -27,14 +27,14 @@ settings_dict = {
     'particle_distance_from_center': 1,
 
     # Defines if label with synch values is shown
-    'label_on': True,
+    'label_on': False,
 
     # How often values are sent from the data mocking thread
     #   Measured in seconds
     'mock_update_rate': 0.2,
 
     # What range of values are mocked and sent to the visualization
-    'mock_value_range': [1.0, 1.0]
+    'mock_value_range': [0.1, 1.0]
 }
 
 

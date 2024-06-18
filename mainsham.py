@@ -8,7 +8,6 @@ import sys
 import time
 import mockNeuroPype
 import os
-from pylsl import StreamInlet, resolve_byprop
 from label import Label
 from particle import Particle
 from settings import settings
@@ -31,7 +30,7 @@ class VisualizationManager:
         self.dt = 0
 
         # Create display-related attributes
-        self.display_width = width #chosen_settings.display_size
+        self.display_width = width  #chosen_settings.display_size
         self.display_height = height
         self.display = pygame.display.set_mode((self.display_width, self.display_height), flags=pygame.SCALED, vsync=1)
         self.surface = pygame.Surface((self.display_width, self.display_height))
