@@ -173,7 +173,7 @@ def neuropype_listener():
 
     try:
         while True:
-            data = client_socket.recv(4)  # 2 floats * 4 bytes each = 28 bytes
+            data = client_socket.recv(4)  # 1 floats * 4 bytes each = 4 bytes
             if data:
                 data_array = struct.unpack('1f', data)
                 # Create a custom event with NeuroPype data
