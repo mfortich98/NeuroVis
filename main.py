@@ -47,14 +47,14 @@ class VisualizationManager:
         }
 
         # Define the data array
-        self.history = [[0] * 2]
+        self.history = [[0] * 1]
 
         # Create the particle variables
         self.num_particles = chosen_settings.num_particles
         self.particle_ms = chosen_settings.particle_speed
         self.particle_tether_range = chosen_settings.particle_tether_range
         self.anchor_assignment = chosen_settings.anchor_assignment
-        self.num_synch_values = 2
+        self.num_synch_values = 1
         self.particle_group = pygame.sprite.Group()
         self._initialize_particles()
 
@@ -117,8 +117,8 @@ class VisualizationManager:
         # section_angle = 360 / self.num_particles
 
         pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.06, 2)
-        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 0.47, 1)
-        pygame.draw.circle(self.surface, self.colors["GREEN"], self.center, self.radius * 0.27, 100)
+        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 0.57, 1)  #at 0.5 coherence
+        pygame.draw.circle(self.surface, self.colors["GREEN"], self.center, self.radius * 0.27, 100)  #at 0.8 coherence
 
         # for i in range(self.num_particles):
         #     end_angle = math.radians(i * section_angle)
@@ -139,7 +139,7 @@ class VisualizationManager:
                 if random_assign == 0:
                     particle.set_anchor(self.history[-1][0])
                 else:
-                    particle.set_anchor(self.history[-1][1])
+                    particle.set_anchor(self.history[-1][0])  #used to be 1 for the second value
 
         elif self.anchor_assignment == "halves":
             half = self.num_particles // self.num_synch_values
@@ -166,9 +166,9 @@ class VisualizationManager:
 # Function to listen for data from NeuroPype
 def neuropype_listener():
     while True:
-        (MFG_coh, timestamp) = MFGinlet.pull_sample()
+        #(MFG_coh, timestamp) = MFGinlet.pull_sample()
         (IFG_coh, timestamp) = IFGinlet.pull_sample()
-        data_array = [MFG_coh[0], IFG_coh[0]]
+        data_array = [IFG_coh[0]]
         #print(MFG_coh[0], IFG_coh[0])
         event = pygame.event.Event(NEUROPYPE_EVENT, data=data_array)
         pygame.event.post(event)
@@ -181,11 +181,11 @@ if __name__ == '__main__':
 
     # first resolve a stream on the lab network
     print("Looking for streams...")
-    streams = resolve_byprop('type', 'coherence', minimum=2)
+    streams = resolve_byprop('type', 'coherence', minimum=1)
 
     # create a new inlet to read from the stream
-    MFGinlet = StreamInlet(streams[0])
-    IFGinlet = StreamInlet(streams[1])
+    #MFGinlet = StreamInlet(streams[0])
+    IFGinlet = StreamInlet(streams[0])
 
     # Initialize Visualization Manager
     vis = VisualizationManager(settings)

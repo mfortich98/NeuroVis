@@ -16,8 +16,8 @@ def neuropype_simulator(update_rate, val_range):
         while True:
             min_value = val_range[0]
             max_value = val_range[1]
-            data_array = [random.uniform(min_value, max_value) for _ in range(2)]
-            data_bytes = struct.pack('2f', *data_array)
+            data_array = [random.uniform(min_value, max_value) for _ in range(1)]
+            data_bytes = struct.pack('1f', *data_array)
             connection.sendall(data_bytes)
             # print(f"sent {data_array}")
             time.sleep(update_rate)  # Simulate data sending every 5 seconds

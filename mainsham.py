@@ -49,14 +49,14 @@ class VisualizationManager:
         }
 
         # Define the data array
-        self.history = [[0] * 2]
+        self.history = [[0] * 1]
 
         # Create the particle variables
         self.num_particles = chosen_settings.num_particles
         self.particle_ms = chosen_settings.particle_speed
         self.particle_tether_range = chosen_settings.particle_tether_range
         self.anchor_assignment = chosen_settings.anchor_assignment
-        self.num_synch_values = 2
+        self.num_synch_values = 1
         self.particle_group = pygame.sprite.Group()
         self._initialize_particles()
 
@@ -119,8 +119,8 @@ class VisualizationManager:
         # section_angle = 360 / self.num_particles
 
         pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.06, 2)
-        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 0.47, 1)
-        pygame.draw.circle(self.surface, self.colors["GREEN"], self.center, self.radius * 0.27, 100)
+        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 0.57, 1)  #at 0.5 coherence
+        pygame.draw.circle(self.surface, self.colors["GREEN"], self.center, self.radius * 0.27, 100)  #at 0.8 coherence
 
         # for i in range(self.num_particles):
         #     end_angle = math.radians(i * section_angle)
@@ -141,7 +141,7 @@ class VisualizationManager:
                 if random_assign == 0:
                     particle.set_anchor(self.history[-1][0])
                 else:
-                    particle.set_anchor(self.history[-1][1])
+                    particle.set_anchor(self.history[-1][0])  #used to be 1 for the second value
 
         elif self.anchor_assignment == "halves":
             half = self.num_particles // self.num_synch_values
@@ -173,9 +173,9 @@ def neuropype_listener():
 
     try:
         while True:
-            data = client_socket.recv(8)  # 2 floats * 4 bytes each = 28 bytes
+            data = client_socket.recv(4)  # 2 floats * 4 bytes each = 28 bytes
             if data:
-                data_array = struct.unpack('2f', data)
+                data_array = struct.unpack('1f', data)
                 # Create a custom event with NeuroPype data
                 event = pygame.event.Event(NEUROPYPE_EVENT, data=data_array)
                 # Post the event to the Pygame event queue
