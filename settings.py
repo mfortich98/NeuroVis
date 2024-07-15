@@ -27,7 +27,7 @@ settings_dict = {
     'particle_distance_from_center': 0.5,
 
     # Defines if label with synch values is shown
-    'label_on': False,
+    'label_on': True,
 
     # How often values are sent from the data mocking thread
     #   Measured in seconds
