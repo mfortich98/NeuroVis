@@ -119,8 +119,8 @@ class VisualizationManager:
         # section_angle = 360 / self.num_particles
 
         pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 1.06, 2)
-        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 0.57, 1)  #at 0.5 coherence
-        pygame.draw.circle(self.surface, self.colors["GREEN"], self.center, self.radius * 0.27, 100)  #at 0.8 coherence
+        pygame.draw.circle(self.surface, self.colors["BLACK"], self.center, self.radius * 0.57, 1)  #at 0.5 coherence in monitor used
+        pygame.draw.circle(self.surface, self.colors["GREEN"], self.center, self.radius * 0.27, 100)  #at 0.8 coherence in monitor used
 
         # for i in range(self.num_particles):
         #     end_angle = math.radians(i * section_angle)
